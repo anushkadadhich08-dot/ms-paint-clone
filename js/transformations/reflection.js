@@ -1,0 +1,1 @@
+export function reflectPoint({ x, y }, axis, origin = { x: 0, y: 0 }) { if (axis === 'x') return { x, y: 2 * origin.y - y }; if (axis === 'y') return { x: 2 * origin.x - x, y }; return { x: 2 * origin.x - x, y: 2 * origin.y - y }; }

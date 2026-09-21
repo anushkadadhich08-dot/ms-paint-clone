@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2563eb" />
+    <title>GraphiDraw</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <div class="brand" aria-label="GraphiDraw">
+          <span class="brand-mark" aria-hidden="true">✦</span>
+          <span>GraphiDraw</span>
+          <small>Computer Graphics Lab</small>
+        </div>
+        <div class="header-actions">
+          <input id="open-file" type="file" accept="image/png,image/jpeg" hidden />
+          <button class="button button-quiet" id="new-canvas" type="button">New</button>
+          <button class="button button-quiet" id="open-image" type="button">Open</button>
+          <button class="button button-quiet" id="undo" type="button" title="Ctrl/Cmd + Z">Undo</button>
+          <button class="button button-quiet" id="redo" type="button" title="Ctrl/Cmd + Y">Redo</button>
+          <button class="button button-quiet" id="export-png" type="button">PNG</button>
+          <button class="button button-quiet" id="export-jpg" type="button">JPG</button>
+          <button class="button button-primary" id="clear-canvas" type="button">Clear canvas</button>
+        </div>
+      </header>
+
+      <section class="workspace" aria-label="Drawing workspace">
+        <aside class="sidebar" aria-label="Canvas settings">
+          <div class="panel-heading">
+            <span class="eyebrow">Workspace</span>
+            <h1>New drawing</h1>
+          </div>
+
+          <fieldset class="control-group">
+            <legend>Canvas size</legend>
+            <label for="canvas-width">Width <output id="canvas-width-output">900 px</output></label>
+            <input id="canvas-width" type="range" min="320" max="1400" step="20" value="900" />
+            <label for="canvas-height">Height <output id="canvas-height-output">600 px</output></label>
+            <input id="canvas-height" type="range" min="240" max="1000" step="20" value="600" />
+          </fieldset>
+
+          <div class="control-group">
+            <span class="control-label">Background</span>
+            <div class="color-control">
+              <input id="background-color" type="color" value="#ffffff" aria-label="Canvas background color" />
+              <label for="background-color">White</label>
+            </div>
+          </div>
+
+          <fieldset class="control-group">
+            <legend>Tools</legend>
+            <div class="tool-grid" role="group" aria-label="Drawing tools">
+              <button class="tool-button is-active" data-tool="pencil" type="button" aria-pressed="true"><span aria-hidden="true">✎</span>Pencil</button>
+              <button class="tool-button" data-tool="brush" type="button" aria-pressed="false"><span aria-hidden="true">●</span>Brush</button>
+              <button class="tool-button" data-tool="eraser" type="button" aria-pressed="false"><span aria-hidden="true">⌫</span>Eraser</button>
+              <button class="tool-button" data-tool="line" type="button" aria-pressed="false"><span aria-hidden="true">╱</span>Line</button>
+              <button class="tool-button" data-tool="rectangle" type="button" aria-pressed="false"><span aria-hidden="true">□</span>Rectangle</button>
+              <button class="tool-button" data-tool="circle" type="button" aria-pressed="false"><span aria-hidden="true">○</span>Circle</button>
+              <button class="tool-button" data-tool="ellipse" type="button" aria-pressed="false"><span aria-hidden="true">⬭</span>Ellipse</button>
+              <button class="tool-button" data-tool="triangle" type="button" aria-pressed="false"><span aria-hidden="true">△</span>Triangle</button>
+              <button class="tool-button" data-tool="polygon" type="button" aria-pressed="false"><span aria-hidden="true">⬠</span>Polygon</button>
+              <button class="tool-button" data-tool="fill" type="button" aria-pressed="false"><span aria-hidden="true">▧</span>Fill</button>
+              <button class="tool-button" data-tool="select" type="button" aria-pressed="false"><span aria-hidden="true">⌑</span>Select</button>
+            </div>
+          </fieldset>
+
+          <div class="control-group">
+            <span class="control-label">Stroke</span>
+            <div class="color-control">
+              <input id="foreground-color" type="color" value="#17213b" aria-label="Drawing color" />
+              <label for="foreground-color">Drawing color</label>
+            </div>
+            <label for="brush-size">Size <output id="brush-size-output">4 px</output></label>
+            <input id="brush-size" type="range" min="1" max="60" step="1" value="4" />
+          </div>
+
+          <fieldset class="control-group">
+            <legend>Algorithms</legend>
+            <label for="line-algorithm">Line rasterization</label>
+            <select id="line-algorithm"><option value="bresenham">Bresenham</option><option value="dda">DDA</option></select>
+            <label for="fill-algorithm">Region filling</label>
+            <select id="fill-algorithm"><option value="flood">Flood fill</option><option value="boundary">Boundary fill</option></select>
+            <label class="check-control"><input id="visualize" type="checkbox" /> Show algorithm details</label>
+          </fieldset>
+
+          <fieldset class="control-group selection-controls">
+            <legend>Selection transform</legend>
+            <div class="transform-grid">
+              <button class="button" data-transform="rotate" type="button">Rotate 15°</button><button class="button" data-transform="scale" type="button">Scale 1.1×</button>
+              <button class="button" data-transform="reflect-x" type="button">Flip X</button><button class="button" data-transform="reflect-y" type="button">Flip Y</button>
+              <button class="button" id="delete-selection" type="button">Delete</button>
+            </div>
+          </fieldset>
+
+          <div class="hint-card">
+            <span aria-hidden="true">⌁</span>
+            <p>Select a tool, set a color and drag across the canvas to draw.</p>
+          </div>
+        </aside>
+
+        <section class="canvas-area">
+          <div class="canvas-toolbar" aria-label="Canvas information">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span id="canvas-label">900 × 600</span>
+            <span class="toolbar-divider" aria-hidden="true"></span>
+            <button class="zoom-button" id="zoom-out" type="button" aria-label="Zoom out">−</button><span id="zoom-label">100%</span><button class="zoom-button" id="zoom-in" type="button" aria-label="Zoom in">+</button>
+          </div>
+          <div class="canvas-scroll" id="canvas-scroll">
+            <div class="canvas-frame">
+              <canvas id="drawing-canvas" width="900" height="600" aria-label="Drawing canvas">Your browser does not support HTML canvas.</canvas>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <footer class="status-bar" aria-live="polite">
+        <span id="status-message">Ready</span>
+        <span id="coordinate-display">X: — &nbsp; Y: —</span>
+        <span id="algorithm-display">Ready to draw</span>
+      </footer>
+    </main>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

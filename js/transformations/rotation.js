@@ -1,0 +1,1 @@
+export function rotatePoint({ x, y }, angleDegrees, origin = { x: 0, y: 0 }) { const angle = (angleDegrees * Math.PI) / 180; const dx = x - origin.x; const dy = y - origin.y; return { x: origin.x + dx * Math.cos(angle) - dy * Math.sin(angle), y: origin.y + dx * Math.sin(angle) + dy * Math.cos(angle) }; }
