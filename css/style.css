@@ -37,6 +37,7 @@ button, input { font: inherit; }
 .button:hover { border-color: #94a3c2; background: #f8faff; }
 .button-primary { background: #2563eb; border-color: #2563eb; color: #fff; }
 .button-primary:hover { background: #1d4ed8; border-color: #1d4ed8; }
+.button-theme { display: inline-flex; align-items: center; gap: 6px; }.button-theme span:first-child { font-size: 1rem; }
 
 .workspace { min-height: 0; display: grid; grid-template-columns: 285px minmax(0, 1fr); }
 .sidebar { padding: 28px 24px; background: #fff; border-right: 1px solid #dfe7f5; }
@@ -71,3 +72,14 @@ canvas { display: block; touch-action: none; cursor: crosshair; }
 @media (max-width: 720px) {
   .brand small { display: none; }.workspace { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); }.sidebar { padding: 16px 20px; border-right: 0; border-bottom: 1px solid #dfe7f5; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }.panel-heading { grid-column: 1 / -1; }.panel-heading h1 { margin-bottom: 0; }.control-group { margin-bottom: 0; }.hint-card { display: none; }.canvas-scroll { padding: 24px; }.app-header { min-height: 60px; }.selection-controls { display: none; }.status-bar #algorithm-display { display: none; }
 }
+
+/* Dashboard dark theme */
+body.theme-dark { color: #e5edff; background: #0a1020; }
+body.theme-dark .app-header, body.theme-dark .sidebar, body.theme-dark .status-bar { background: #10192b; border-color: #26344e; }
+body.theme-dark .brand { color: #f1f5ff; }.theme-dark .brand small, .theme-dark .eyebrow { color: #91b7ff; }.theme-dark h1 { color: #f0f5ff; }
+body.theme-dark .button { color: #cbd8f2; background: #17233a; border-color: #324664; }.theme-dark .button:hover { background: #203250; border-color: #5279b8; }.theme-dark .button-primary { color: #fff; background: #2e6ee9; border-color: #3e7cf1; }.theme-dark .button-theme { color: #ffe49a; background: #282641; border-color: #5e5790; }
+body.theme-dark .sidebar { border-right-color: #26344e; }.theme-dark .control-group legend, .theme-dark .control-label, .theme-dark .control-group label { color: #aabbd8; }.theme-dark output { color: #89a6d7; }.theme-dark input[type="range"] { accent-color: #72a2ff; }.theme-dark input[type="color"], .theme-dark select { color: #dce8ff; background: #17233a; border-color: #354a69; }
+body.theme-dark .canvas-area { background: #0a1120; }.theme-dark .canvas-toolbar { color: #aebfda; background: #111b2e; border-color: #26344e; }.theme-dark .toolbar-divider { background: #34445f; }.theme-dark .zoom-button { color: #cbd8f2; border-color: #415878; background: #1b2a43; }.theme-dark .canvas-frame { box-shadow: 0 14px 35px rgba(0,0,0,.55), 0 0 0 1px #314360; }
+body.theme-dark .tool-button { color: #b6c8e6; background: #17233a; border-color: #314766; }.theme-dark .tool-button:hover { color: #e4efff; background: #203456; border-color: #6089cc; }.theme-dark .tool-button.is-active { color: #b9d5ff; background: #173568; border-color: #6196ee; box-shadow: inset 0 0 0 1px #78aaf6; }
+body.theme-dark .hint-card { color: #a8c4f3; background: #13294b; }.theme-dark .hint-card span { color: #83b2ff; }.theme-dark .emoji-panel { background: #142641; border-color: #3b5f91; }.theme-dark .emoji-panel-heading { color: #aecbfc; }.theme-dark .emoji-panel-heading button { color: #c6d7f2; }.theme-dark .emoji-grid button { background: #1b2c47; }.theme-dark .emoji-grid button:hover, .theme-dark .emoji-grid button.is-selected { background: #264b7e; border-color: #78adff; }.theme-dark .emoji-choice { color: #aec1e0; }
+body.theme-dark .status-bar { color: #a6b8d6; }.theme-dark .transform-grid #delete-selection { color: #ffaaa5; }
