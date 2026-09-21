@@ -8,6 +8,23 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <section class="splash-screen" id="splash-screen" aria-labelledby="splash-title">
+      <div class="splash-orbit orbit-one" aria-hidden="true"></div>
+      <div class="splash-orbit orbit-two" aria-hidden="true"></div>
+      <div class="splash-content">
+        <div class="splash-logo" aria-label="GraphiDraw logo">
+          <span class="logo-corner corner-top-left"></span><span class="logo-corner corner-top-right"></span>
+          <span class="logo-corner corner-bottom-left"></span><span class="logo-corner corner-bottom-right"></span>
+          <span class="logo-pencil" aria-hidden="true"></span>
+          <span class="logo-spark spark-one" aria-hidden="true">✦</span><span class="logo-spark spark-two" aria-hidden="true">✦</span>
+        </div>
+        <p class="splash-kicker">Computer Graphics Lab</p>
+        <h1 id="splash-title">Graphi<span>Draw</span></h1>
+        <p class="splash-tagline">Draw. Explore. Understand pixels.</p>
+        <button class="splash-enter" id="open-workspace" type="button">Open workspace <span aria-hidden="true">→</span></button>
+        <p class="splash-hint">An interactive 2D graphics studio</p>
+      </div>
+    </section>
     <main class="app-shell">
       <header class="app-header">
         <div class="brand" aria-label="GraphiDraw">
@@ -58,7 +75,7 @@
               <button class="tool-button" data-tool="eraser" type="button" aria-pressed="false"><span aria-hidden="true">⌫</span>Eraser</button>
               <button class="tool-button" data-tool="line" type="button" aria-pressed="false"><span aria-hidden="true">╱</span>Line</button>
               <button class="tool-button" data-tool="rectangle" type="button" aria-pressed="false"><span aria-hidden="true">□</span>Rectangle</button>
-              <button class="tool-button" data-tool="circle" type="button" aria-pressed="false"><span aria-hidden="true">○</span>Circle</button>
+              <button class="tool-button" data-tool="circle" type="button" aria-pressed="false" title="Midpoint Circle — press C"><span aria-hidden="true">◯</span>Circle</button>
               <button class="tool-button" data-tool="ellipse" type="button" aria-pressed="false"><span aria-hidden="true">⬭</span>Ellipse</button>
               <button class="tool-button" data-tool="triangle" type="button" aria-pressed="false"><span aria-hidden="true">△</span>Triangle</button>
               <button class="tool-button" data-tool="polygon" type="button" aria-pressed="false"><span aria-hidden="true">⬠</span>Polygon</button>

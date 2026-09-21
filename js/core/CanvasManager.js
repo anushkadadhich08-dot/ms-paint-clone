@@ -30,8 +30,8 @@ export class CanvasManager {
   getCanvasPoint(event) {
     const bounds = this.canvas.getBoundingClientRect();
     return {
-      x: Math.floor((event.clientX - bounds.left) * (this.canvas.width / bounds.width)),
-      y: Math.floor((event.clientY - bounds.top) * (this.canvas.height / bounds.height)),
+      x: Math.max(0, Math.min(this.canvas.width - 1, Math.floor((event.clientX - bounds.left) * (this.canvas.width / bounds.width)))),
+      y: Math.max(0, Math.min(this.canvas.height - 1, Math.floor((event.clientY - bounds.top) * (this.canvas.height / bounds.height)))),
     };
   }
 }

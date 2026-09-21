@@ -13,7 +13,15 @@ export class ShapeTool extends Tool {
     const context = this.canvasManager.context; const { x, y } = this.start; const w = end.x - x; const h = end.y - y;
     context.save(); context.strokeStyle = this.state.foregroundColor; context.lineWidth = this.state.brushSize; context.lineCap = 'round'; context.lineJoin = 'round';
     if (this.type === 'line') { const points = this.pointsForLine(this.start, end); this.plot(points); if (this.state.visualize) this.onInfo(`${this.state.lineAlgorithm.toUpperCase()} · dx ${w} · dy ${h} · ${points.length} pixels`); }
-    else if (this.type === 'circle') { const radius = Math.round(Math.hypot(w, h)); const points = midpointCircle(this.start, radius); this.plot(points); if (this.state.visualize) this.onInfo(`Midpoint circle · r ${radius} · ${points.length} symmetric points`); }
+    else if (this.type === 'circle') {
+      // Keep the complete circle on the drawing surface, rather than clipping it at an edge.
+      const { width, height } = this.canvasManager.canvas;
+      const maxRadius = Math.max(1, Math.min(x, y, width - 1 - x, height - 1 - y));
+      const radius = Math.min(Math.round(Math.hypot(w, h)), maxRadius);
+      const points = midpointCircle(this.start, radius);
+      this.plotConnectedCircle(points);
+      this.onInfo(`Midpoint circle · center (${x}, ${y}) · radius ${radius} px · closed boundary`);
+    }
     else if (this.type === 'rectangle') { context.strokeRect(x, y, w, h); this.onInfo(`Rectangle · ${Math.abs(Math.round(w))} × ${Math.abs(Math.round(h))}`); }
     else if (this.type === 'ellipse') { context.beginPath(); context.ellipse(x, y, Math.abs(w), Math.abs(h), 0, 0, Math.PI * 2); context.stroke(); this.onInfo('Ellipse preview'); }
     else if (this.type === 'triangle') { context.beginPath(); context.moveTo(x, y + h); context.lineTo(x + w / 2, y); context.lineTo(x + w, y + h); context.closePath(); context.stroke(); this.onInfo('Triangle preview'); }
@@ -21,4 +29,11 @@ export class ShapeTool extends Tool {
     context.restore();
   }
   plot(points) { const context = this.canvasManager.context; context.fillStyle = this.state.foregroundColor; const side = Math.max(1, this.state.brushSize); points.forEach(({ x, y }) => context.fillRect(x - side / 2, y - side / 2, side, side)); }
+  plotConnectedCircle(points) {
+    const unique = [...new Map(points.map((point) => [`${point.x},${point.y}`, point])).values()];
+    const center = this.start;
+    unique.sort((a, b) => Math.atan2(a.y - center.y, a.x - center.x) - Math.atan2(b.y - center.y, b.x - center.x));
+    const outline = unique.flatMap((point, index) => bresenhamLine(point, unique[(index + 1) % unique.length]));
+    this.plot(outline);
+  }
 }
