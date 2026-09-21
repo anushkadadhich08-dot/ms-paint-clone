@@ -83,10 +83,19 @@
               <button class="tool-button" data-tool="fill" type="button" aria-pressed="false"><span aria-hidden="true">▧</span>Fill</button>
               <button class="tool-button" data-tool="select" type="button" aria-pressed="false"><span aria-hidden="true">⌑</span>Select</button>
               <button class="tool-button" data-tool="picture" type="button" aria-pressed="false" title="Place an image"><span aria-hidden="true">▣</span>Picture</button>
-              <button class="tool-button" data-tool="emoji" type="button" aria-pressed="false" title="Place an emoji"><span aria-hidden="true">☺</span>Emoji</button>
+              <button class="tool-button" data-tool="emoji" type="button" aria-pressed="false" aria-expanded="false" aria-controls="emoji-panel" title="Choose an emoji"><span aria-hidden="true">☺</span>Emoji</button>
               <button class="tool-button" data-tool="three-d" type="button" aria-pressed="false" title="Draw a 3D box"><span aria-hidden="true">◈</span>3D Shape</button>
             </div>
           </fieldset>
+
+          <section class="emoji-panel" id="emoji-panel" aria-label="Choose an emoji" hidden>
+            <div class="emoji-panel-heading"><span>Choose an emoji</span><button id="close-emoji-panel" type="button" aria-label="Close emoji panel">×</button></div>
+            <div class="emoji-grid">
+              <button data-emoji="✨" type="button" title="Sparkle">✨</button><button data-emoji="😊" type="button" title="Smile">😊</button><button data-emoji="❤️" type="button" title="Heart">❤️</button><button data-emoji="🌟" type="button" title="Glowing star">🌟</button>
+              <button data-emoji="🎨" type="button" title="Palette">🎨</button><button data-emoji="🚀" type="button" title="Rocket">🚀</button><button data-emoji="🌈" type="button" title="Rainbow">🌈</button><button data-emoji="🔥" type="button" title="Fire">🔥</button>
+              <button data-emoji="🌸" type="button" title="Flower">🌸</button><button data-emoji="⚡" type="button" title="Lightning">⚡</button><button data-emoji="🎯" type="button" title="Target">🎯</button><button data-emoji="💡" type="button" title="Idea">💡</button>
+            </div>
+          </section>
 
           <div class="control-group">
             <span class="control-label">Stroke</span>
@@ -109,8 +118,7 @@
 
           <fieldset class="control-group creative-controls">
             <legend>Creative tools</legend>
-            <label for="emoji-picker">Emoji stamp</label>
-            <select id="emoji-picker" aria-label="Emoji to stamp"><option value="✨">✨ Sparkle</option><option value="😊">😊 Smile</option><option value="❤️">❤️ Heart</option><option value="🌟">🌟 Star</option><option value="🎨">🎨 Palette</option><option value="🚀">🚀 Rocket</option></select>
+            <p class="emoji-choice">Selected emoji <span id="selected-emoji" aria-label="Selected emoji">✨</span></p>
             <label for="view-angle">3D view angle <output id="view-angle-output">30°</output></label>
             <input id="view-angle" type="range" min="10" max="65" step="1" value="30" />
           </fieldset>
