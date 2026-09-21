@@ -34,6 +34,7 @@
         </div>
         <div class="header-actions">
           <input id="open-file" type="file" accept="image/png,image/jpeg" hidden />
+          <input id="picture-file" type="file" accept="image/png,image/jpeg,image/webp" hidden />
           <button class="button button-quiet" id="new-canvas" type="button">New</button>
           <button class="button button-quiet" id="open-image" type="button">Open</button>
           <button class="button button-quiet" id="undo" type="button" title="Ctrl/Cmd + Z">Undo</button>
@@ -81,6 +82,9 @@
               <button class="tool-button" data-tool="polygon" type="button" aria-pressed="false"><span aria-hidden="true">⬠</span>Polygon</button>
               <button class="tool-button" data-tool="fill" type="button" aria-pressed="false"><span aria-hidden="true">▧</span>Fill</button>
               <button class="tool-button" data-tool="select" type="button" aria-pressed="false"><span aria-hidden="true">⌑</span>Select</button>
+              <button class="tool-button" data-tool="picture" type="button" aria-pressed="false" title="Place an image"><span aria-hidden="true">▣</span>Picture</button>
+              <button class="tool-button" data-tool="emoji" type="button" aria-pressed="false" title="Place an emoji"><span aria-hidden="true">☺</span>Emoji</button>
+              <button class="tool-button" data-tool="three-d" type="button" aria-pressed="false" title="Draw a 3D box"><span aria-hidden="true">◈</span>3D Shape</button>
             </div>
           </fieldset>
 
@@ -101,6 +105,14 @@
             <label for="fill-algorithm">Region filling</label>
             <select id="fill-algorithm"><option value="flood">Flood fill</option><option value="boundary">Boundary fill</option></select>
             <label class="check-control"><input id="visualize" type="checkbox" /> Show algorithm details</label>
+          </fieldset>
+
+          <fieldset class="control-group creative-controls">
+            <legend>Creative tools</legend>
+            <label for="emoji-picker">Emoji stamp</label>
+            <select id="emoji-picker" aria-label="Emoji to stamp"><option value="✨">✨ Sparkle</option><option value="😊">😊 Smile</option><option value="❤️">❤️ Heart</option><option value="🌟">🌟 Star</option><option value="🎨">🎨 Palette</option><option value="🚀">🚀 Rocket</option></select>
+            <label for="view-angle">3D view angle <output id="view-angle-output">30°</output></label>
+            <input id="view-angle" type="range" min="10" max="65" step="1" value="30" />
           </fieldset>
 
           <fieldset class="control-group selection-controls">

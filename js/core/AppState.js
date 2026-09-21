@@ -10,5 +10,7 @@ export class AppState {
     this.lineAlgorithm = 'bresenham';
     this.fillAlgorithm = 'flood';
     this.visualize = false;
+    this.emoji = '✨';
+    this.viewAngle = 30;
   }
 }
