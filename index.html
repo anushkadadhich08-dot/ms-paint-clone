@@ -86,6 +86,7 @@
               <button class="tool-button" data-tool="picture" type="button" aria-pressed="false" title="Place an image"><span aria-hidden="true">▣</span>Picture</button>
               <button class="tool-button" data-tool="emoji" type="button" aria-pressed="false" aria-expanded="false" aria-controls="emoji-panel" title="Choose an emoji"><span aria-hidden="true">☺</span>Emoji</button>
               <button class="tool-button" data-tool="three-d" type="button" aria-pressed="false" title="Draw a 3D box"><span aria-hidden="true">◈</span>3D Shape</button>
+              <button class="tool-button" data-tool="text" type="button" aria-pressed="false" title="Add text"><span aria-hidden="true">T</span>Text</button>
             </div>
           </fieldset>
 
@@ -122,6 +123,27 @@
             <p class="emoji-choice">Selected emoji <span id="selected-emoji" aria-label="Selected emoji">✨</span></p>
             <label for="view-angle">3D view angle <output id="view-angle-output">30°</output></label>
             <input id="view-angle" type="range" min="10" max="65" step="1" value="30" />
+          </fieldset>
+
+          <fieldset class="control-group text-controls">
+            <legend>Text tool</legend>
+            <label for="text-content">Text to place</label>
+            <textarea id="text-content" rows="3" maxlength="500" placeholder="Type a heading, note, or label…"></textarea>
+            <label for="font-family">Font family</label>
+            <select id="font-family">
+              <option value="Arial, sans-serif">Arial — Clean</option>
+              <option value="Verdana, sans-serif">Verdana — Readable</option>
+              <option value="Georgia, serif">Georgia — Serif</option>
+              <option value="'Times New Roman', serif">Times New Roman — Classic</option>
+              <option value="'Courier New', monospace">Courier New — Typewriter</option>
+              <option value="Impact, sans-serif">Impact — Display</option>
+              <option value="cursive">Cursive — Handwriting</option>
+            </select>
+            <label for="font-weight">Font style</label>
+            <select id="font-weight"><option value="400">Regular</option><option value="600" selected>Semibold</option><option value="700">Bold</option><option value="900">Extra bold</option></select>
+            <label for="text-size">Font size <output id="text-size-output">24 px</output></label>
+            <input id="text-size" type="range" min="10" max="96" step="1" value="24" />
+            <p class="text-hint">Choose Text, then click the canvas to place it. Your drawing color is used.</p>
           </fieldset>
 
           <fieldset class="control-group selection-controls">

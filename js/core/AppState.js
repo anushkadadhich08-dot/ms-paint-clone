@@ -12,5 +12,9 @@ export class AppState {
     this.visualize = false;
     this.emoji = '✨';
     this.viewAngle = 30;
+    this.textContent = '';
+    this.textSize = 24;
+    this.fontFamily = 'Arial, sans-serif';
+    this.fontWeight = '600';
   }
 }
