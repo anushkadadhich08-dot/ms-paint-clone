@@ -16,5 +16,7 @@ export class AppState {
     this.textSize = 24;
     this.fontFamily = 'Arial, sans-serif';
     this.fontWeight = '600';
+    this.textColor = '#17213b';
+    this.textAutoContrast = true;
   }
 }

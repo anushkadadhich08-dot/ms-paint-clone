@@ -141,6 +141,12 @@
             </select>
             <label for="font-weight">Font style</label>
             <select id="font-weight"><option value="400">Regular</option><option value="600" selected>Semibold</option><option value="700">Bold</option><option value="900">Extra bold</option></select>
+            <div class="text-color-row">
+              <label for="text-color">Text color</label>
+              <input id="text-color" type="color" value="#17213b" aria-label="Text color" />
+              <span id="text-color-value">#17213B</span>
+            </div>
+            <label class="check-control"><input id="text-auto-contrast" type="checkbox" checked /> Keep readable contrast</label>
             <label for="text-size">Font size <output id="text-size-output">24 px</output></label>
             <input id="text-size" type="range" min="10" max="96" step="1" value="24" />
             <p class="text-hint">Choose Text, then click the canvas to place it. Your drawing color is used.</p>
